@@ -12,7 +12,7 @@ fun main() {
         })
     }
 
-    val worker = Worker("worker/KotlinJSWebWorker.js")
+    val worker = Worker("worker.js")
     worker.onmessage = { m: MessageEvent ->
         println("Client got message: ${m.data}")
         root.append(document.create.p {

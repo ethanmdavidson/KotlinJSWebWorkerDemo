@@ -17,6 +17,7 @@ kotlin {
         binaries.executable()
         browser {
             commonWebpackConfig {
+                outputFileName = "client.js"
                 cssSupport.enabled = true
             }
         }
@@ -24,10 +25,8 @@ kotlin {
     js("webworker", IR) {
         binaries.executable()
         browser{
-            distribution {
-                //distribution target dir needs to change or executables will clobber each other.
-                //I would prefer to just change the .js file name, but afaict you can't do that.
-                directory = File("$buildDir/distributions/worker/")
+            commonWebpackConfig {
+                outputFileName = "worker.js"
             }
         }
     }
@@ -50,3 +49,5 @@ kotlin {
         }
     }
 }
+
+//tasks.named("jsBrowserRun"){ dependsOn("webworkerBrowserWebpack") }
