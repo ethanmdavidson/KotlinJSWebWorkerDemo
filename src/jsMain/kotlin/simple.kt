@@ -1,5 +1,6 @@
 import kotlinx.browser.document
 import kotlinx.html.dom.create
+import kotlinx.html.js.a
 import kotlinx.html.js.p
 import org.w3c.dom.MessageEvent
 import org.w3c.dom.Worker
@@ -8,7 +9,11 @@ fun main() {
     println("Client is running...")
     val root = document.getElementById("root")!!.apply {
         append (document.create.p {
-            +"Hello, ${greet()}"
+            +"Hello, ${greet()}!"
+        })
+        append (document.create.a {
+            href = "https://github.com/ethanmdavidson/KotlinJSWebWorkerDemo"
+            +"Get the source here!"
         })
     }
 

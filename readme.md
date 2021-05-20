@@ -3,7 +3,9 @@
 This repo demonstrates how to set up a 
 [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
 in Kotlin/JS. It is a very simple demo that creates a new worker that 
-sends back the current time.
+sends back the current time. 
+
+Check out [the live demo!](https://ethanmdavidson.github.io/KotlinJSWebWorkerDemo/)
 
 ## How does it work?
 
