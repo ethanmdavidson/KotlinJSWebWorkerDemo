@@ -2,6 +2,9 @@ import kotlinx.browser.document
 import kotlinx.html.dom.create
 import kotlinx.html.js.a
 import kotlinx.html.js.p
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.decodeFromString
 import org.w3c.dom.MessageEvent
 import org.w3c.dom.Worker
 
@@ -19,14 +22,16 @@ fun main() {
 
     val worker = Worker("worker.js")
     worker.onmessage = { m: MessageEvent ->
-        println("Client got message: ${m.data}")
+        val completedWork:CompletedWork = Json.decodeFromString(m.data as String)
+        println("Client got message: $completedWork")
         root.append(document.create.p {
-            +"Message from worker: ${m.data}"
+            +"Message from worker: ${completedWork.timeSaying}"
         })
     }
 
-    println("Client sending message: $TIME_REQUEST")
-    worker.postMessage(TIME_REQUEST)
+    val assignment = Assignment("o'clock")
+    println("Client sending message: $assignment")
+    worker.postMessage(Json.encodeToString(assignment))
 }
 
 fun greet() = "world"
